@@ -1,12 +1,14 @@
 // ! ! !
 // Three Bugs
 
+
 var Atticus = {name: "Atticus", id: "2405", salary:"47000", score: 3};
 var Jem = {name:"Jem", id:"62347", salary:"63500", score:4};
 var Boo = {name:"Boo", id:"11435", salary:"54000", score:3};
 var Scout = {name:"Scout", id:"6243", salary:"74750", score:5};
 
 var array = [Atticus,Jem,Boo,Scout];
+
 
 //Create variables used to write to the DOM
 var newEl, newText, position;
@@ -16,13 +18,16 @@ position = document.getElementById('content');
 //Loop the array, extracting each array and writing information to the DOM
 //Note that the information is not 'clean'
 for(var i = 0; i < array.length; i++){
+
 	array[i] = calculateSTI(array[i]); 
   console.log(array[i]);
  	newEl = document.createElement('li');
 	newText = document.createTextNode(array[i].name + ", " + array[i].sti + ", " + array[i].salary + ", " + array[i].salaryIncrease);
+
 	newEl.appendChild(newText);
 	position.appendChild(newEl);
 }
+
 
 function calculateSTI(person){
   var newObject = {};
@@ -33,16 +38,19 @@ function calculateSTI(person){
   var baseSalary = person.salary;
   var reviewScore = person.score;
 
+
   var bonus = getBaseSTI(reviewScore) + getYearAdjustment(employeeNumber) - getIncomeAdjustment(baseSalary);
   if(bonus > 0.13){
     bonus = 0.13;
   }
+
 
   newObject.sti = bonus;
   newObject.salary = Math.round(baseSalary * (1.0 + bonus)); // no rounding
   newObject.salaryIncrease = (baseSalary * bonus);
   console.log(newObject.name + " " + newObject.sti + " " + newObject.salary + " " + newObject.salaryIncrease);
   return newObject;
+
 }
 
 function getBaseSTI(reviewScore){
